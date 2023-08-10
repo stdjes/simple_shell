@@ -1,0 +1,6 @@
+# 0x16. C - Simple Shell
+# ALX Sprint 1
+# Second group project
+
+Stephen Eze > @stdjes
+Michael Nketia > Addict07
