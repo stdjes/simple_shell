@@ -1,0 +1,20 @@
+# Ignore all files except the ones with an extension
+*
+!/**/
+!*.*
+
+# Ignore main.c test files
+*main.c
+
+#Ignore temp VI editor files (.swp)
+*.swp
+
+#Ignore _putchar
+_putchar.c
+
+#Allow crackme file
+!10*
+
+#ignore object files
+*.o
+*.out
