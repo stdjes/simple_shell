@@ -1,6 +1,13 @@
 #ifndef _SSH_H_
 #define _SSH_H_
 
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <errno.h>
+
 /* builtin fucntions declarations */
 int builtins(general_t *info, char **arguments);
 int check_builtin(general_t *info, char **arguments);
@@ -16,6 +23,25 @@ void bin_env(general_t *info, char **arguments);
 void bin_echo(general_t *info, char **arguments);
 void echo_printer(int index, char *text, char **arguments);
 
+extern char **environ;
+
+/* commands.c */
+void analyze(char **arguments, general_t *info, char *buff);
+
+/* permissions.c */
+int is_executable(char *filename);
+int is_file(char *command);
+
+/* environment.c */
+char *_getenv(const char *name);
+char *which(char *filename, general_t *info);
+void is_current_path(char *path, general_t *info);
+void get_full_env(void);
+
+/* execute.c */
+void execute(char *commands, char **arguments, general_t *info, char *buff);
+int current_directory(char *cmd, char **arguments, char *buff,
+		general_t *info);
 
 
 #endif _SSH_H_  /* close guard */
