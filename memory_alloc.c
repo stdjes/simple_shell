@@ -20,36 +20,36 @@
  **/
 void *_realloc(void *ptr, size_t old_size, size_t new_size)
 {
-    char *s, *aux;
-    unsigned int a;
+	char *s, *aux;
+	unsigned int a;
 
-    if (new_size == old_size)
-        return ptr; /* No change needed, return original pointer */
+	if (new_size == old_size)
+		return (ptr); /* No change needed, return original pointer */
 
-    if (ptr == NULL)
-    {
-        s = malloc(new_size); /* Allocate new memory block */
-        if (s == NULL)
-            return NULL; /* Allocation failed */
+	if (ptr == NULL)
+	{
+		s = malloc(new_size); /* Allocate new memory block */
+		if (s == NULL)
+			return (NULL); /* Allocation failed */
 
-        return s; /* Return new memory block */
-    }
+		return (s); /* Return new memory block */
+	}
 
-    if (new_size == 0 && ptr != NULL)
-    {
-        free(ptr); /* Free memory block */
-        return NULL; /* Return NULL */
-    }
+	if (new_size == 0 && ptr != NULL)
+	{
+		free(ptr); /* Free memory block */
+		return (NULL); /* Return NULL */
+	}
 
-    s = malloc(new_size); /* Allocate new memory block */
-    if (s == NULL)
-        return NULL; /* Allocation failed */
+	s = malloc(new_size); /* Allocate new memory block */
+	if (s == NULL)
+		return (NULL); /* Allocation failed */
 
-    aux = ptr;
-    for (a = 0; a < old_size; a++)
-        s[a] = aux[a]; /* Copy data from old block to new block */
+	aux = ptr;
+	for (a = 0; a < old_size; a++)
+		s[a] = aux[a]; /* Copy data from old block to new block */
 
-    free(ptr); /* Free old memory block */
+	free(ptr); /* Free old memory block */
 
-    return s; /* Return new memory block */
+	return (s); /* Return new memory block */
 }
