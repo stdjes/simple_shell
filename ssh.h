@@ -116,20 +116,19 @@ void free_memory_pp(void **ptr);
 /* main start  point of the simple shell program */
 void start(general_t *info);
 
-/* text.c */
+/* imput prompt and signal handlers */
 void start_prompt(general_t *info);
 void prompt(general_t *info);
 char *read_prompt();
 void sigintHandler(int sig_num);
 
-/* utils_text.c */
+/* input string manipulation fucntions */
 int _strlen(char *msg);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
 int _strcmp(char *str1, char *str2);
 
-/* utils_text2.c */
 char *to_string(int number);
 int is_numerical(unsigned int n);
 int _atoi(char *s);
@@ -139,23 +138,22 @@ int contains_letter(char *s);
 int _putchar_to_fd(char l, int fd);
 int print_to_fd(char *msg, int fd);
 
-/* printers_out.c */
+/* command line output printers */
 int _putchar(char c);
 int print(char *msg);
 
-/* printers_err.c */
+/* error printer function */
 int print_err(char *msg);
 
-/* tokenization.c */
+/* input promp join/split */
 char **split_words(char *line, const char *sep);
 char *join_words(char *word1, char *word2, char *word3, const char *sep);
 
-/* patterns.c */
+/* patterns handlers */
 void analyze_patterns(general_t *info, char **arguments);
 char *pattern_handler(general_t *info, char *string);
 char *replace_value(general_t *info, int *index, char *string);
 
-/* patterns_replacer.c */
 char *replacement(general_t *info, int *index, char *string);
 char *replace_env(general_t *info, char *environment);
 
