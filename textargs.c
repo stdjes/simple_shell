@@ -1,9 +1,9 @@
 #include "ssh.h"
 
 /**
- * prompt - Print the prompt
+ * prompt - This prints the prompt
  *
- * @info: Struct of general information
+ * @info: Struct gives information
  **/
 void prompt(general_t *info)
 {
@@ -14,9 +14,9 @@ void prompt(general_t *info)
 }
 
 /**
- * read_prompt - Read lines in the prompt
+ * read_prompt - This readslines in the prompt
  *
- * Return: Buffer readed or NULL if EOF was found
+ * Return: The buffer readed or NULL if EOF was found
  **/
 char *read_prompt()
 {
@@ -38,11 +38,11 @@ char *read_prompt()
 }
 
 /**
- * start_prompt - Loop reading text
+ * start_prompt - Starts loop reading text
  *
- * @info: Struct of general information
+ * @info: Struct gives information
  *
- * Return: Buffer readed or NULL if EOF was found
+ * Return: The buffer readed or NULL if EOF was found
  **/
 void start_prompt(general_t *info)
 {
@@ -87,9 +87,9 @@ void start_prompt(general_t *info)
 }
 
 /**
- * sigintHandler - Handler for SIGINT
+ * sigintHandler - This handles for SIGINT
  *
- * @sig_num: Unused parameter
+ * @sig_num: This is unused parameter
  **/
 void sigintHandler(int sig_num)
 {
