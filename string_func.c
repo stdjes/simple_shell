@@ -1,57 +1,51 @@
-#include "text.h"
+#include "ssh.h"
 
 /**
- * _strlen - Return the length of a string
- *
- * @msg: String to calculate length
- *
+ * _strlen - Return string length
+ * @msg: String to measure
  * Return: Length of the string
  **/
 int _strlen(char *msg)
 {
 	int i;
 
-	for (i = 0; msg[i] != '\0'; i++)
+	for (i = 0; msg[i]; i++)
 		;
 
 	return (i);
 }
 
 /**
- * _strcat - Concatenates two strings
- *
- * @dest: String concatenate
+ * _strcat - Concatenate strings
+ * @dest: Destination string
  * @src: Source string
- *
- * Return: A string concatenate
+ * Return: Concatenated string
  */
 char *_strcat(char *dest, char *src)
 {
-	int l_dest, i;
+	int len_dest, i;
 
-	l_dest = _strlen(dest);
+	len_dest = _strlen(dest);
 
-	for (i = 0; src[i] != '\0'; i++, l_dest++)
-		dest[l_dest] = src[i];
+	for (i = 0; src[i]; i++, len_dest++)
+		dest[len_dest] = src[i];
 
-	dest[l_dest] = '\0';
+	dest[len_dest] = '\0';
 
 	return (dest);
 }
 
 /**
- * _strcpy - Copy a string to another
- *
- * @dest: Destination copy
- * @src: Source for copy
- *
- * Return: Return the value of dest
+ * _strcpy - Copy strings
+ * @dest: Destination string
+ * @src: Source string
+ * Return: Pointer to the destination string
  */
 char *_strcpy(char *dest, char *src)
 {
 	int i;
 
-	for (i = 0; src[i] != '\0'; i++)
+	for (i = 0; src[i]; i++)
 		dest[i] = src[i];
 
 	dest[i] = '\0';
@@ -59,48 +53,41 @@ char *_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-
 /**
- * _strdup - Pointer to a newly allocated space in memory
- *
- * @str: String to copy
- *
- * Return: String copied
+ * _strdup - Duplicate string in memory
+ * @str: Source string
+ * Return: Pointer to duplicated string
  **/
 char *_strdup(char *str)
 {
 	int size, i;
 	char *dest;
 
-	if (str == NULL)
+	if (!str)
 		return (NULL);
 
 	size = _strlen(str) + 1;
 	dest = malloc(size * sizeof(char));
-	if (dest == NULL)
+	if (!dest)
 		return (NULL);
 
 	for (i = 0; i < size; i++)
-		*(dest + i) = *(str + i);
-
-	/* (dest + i) = 0; */
+		dest[i] = str[i];
 
 	return (dest);
 }
 
 /**
- * _strcmp - Compare two strings
- *
- * @s1: String 1
- * @s2: String 2
- *
- * Return: Integer
+ * _strcmp - Compare strings
+ * @s1: First string
+ * @s2: Second string
+ * Return: Integer representing comparison result
  */
 int _strcmp(char *s1, char *s2)
 {
 	int i;
 
-	for (i = 0; s1[i] != '\0'; i++)
+	for (i = 0; s1[i]; i++)
 	{
 		if (s1[i] != s2[i])
 			return (s1[i] - s2[i]);
