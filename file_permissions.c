@@ -19,17 +19,17 @@
  **/
 int is_executable(char *filename)
 {
-    struct stat stats;
+	struct stat stats;
 
-    if (stat(filename, &stats) == 0)
-    {
-        if (stats.st_mode & X_OK)
-            return (PERMISSIONS); /* File is executable */
-        else
-            return (NON_PERMISSIONS); /* File is not executable */
-    }
+	if (stat(filename, &stats) == 0)
+	{
+		if (stats.st_mode & X_OK)
+			return (PERMISSIONS); /* File is executable */
+		else
+			return (NON_PERMISSIONS); /* File is not executable */
+	}
 
-    return (NON_FILE); /* File doesn't exist or error occurred */
+	return (NON_FILE); /* File doesn't exist or error occurred */
 }
 
 /**
@@ -53,14 +53,14 @@ int is_executable(char *filename)
  **/
 int is_file(char *path)
 {
-    int i, size;
+	int i, size;
 
-    size = _strlen(path);
-    for (i = 0; i < size; i++)
-    {
-        if (path[i] == '/')
-            return (is_executable(path)); /* Check if the path is executable*/
-    }
+	size = _strlen(path);
+	for (i = 0; i < size; i++)
+	{
+		if (path[i] == '/')
+			return (is_executable(path)); /* Check if the path is executable*/
+	}
 
-    return (NON_FILE); /* Path is not a regular file */
+	return (NON_FILE); /* Path is not a regular file */
 }
