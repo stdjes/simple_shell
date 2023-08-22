@@ -1,13 +1,13 @@
 #include "ssh.h"
 
 /**
- * _putchar_to_fd - Print a character to a specific file
+ * _putchar_to_fd - Print a character to fd- file
  * descriptor
  *
- * @c: Character to print
- * @fd: Place to print the character
+ * @c: Character to be printed
+ * @fd: Print in that the character
  *
- * Return: On success 1.
+ * Return: Prints 1 when works.
  * On error, -1 is returned, and errno is set appropriately.
  **/
 int _putchar_to_fd(char c, int fd)
@@ -17,13 +17,13 @@ int _putchar_to_fd(char c, int fd)
 
 
 /**
- * print_to_fd - Print a string
+ * print_to_fd - Prints a string
  *
- * @msg: Strin to print in the fd specified
- * @fd: File descriptor to print
+ * @msg: Strin to print in file
+ * @fd: File to print
  *
- * Return: On success numbers of bytes printed.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: No of bytes is printed when works
+ * On error, -1 is returned, and errno is set.
  **/
 int print_to_fd(char *msg, int fd)
 {
@@ -35,11 +35,11 @@ int print_to_fd(char *msg, int fd)
 }
 
 /**
- * print_err - Print a message to STDERR
+ * print_err - Prints to STDERR
  *
- * @msg: Message to print
+ * @msg: Message to be print
  *
- * Return: Number of bytes printed
+ * Return: No of bytes printed
  **/
 int print_err(char *msg)
 {
@@ -47,11 +47,11 @@ int print_err(char *msg)
 }
 
 /**
- * _putchar - Print a character to STDOUT
+ * _putchar - Prints to STDOUT
  *
- * @c: Character to print
+ * @c: Character to be printed
  *
- * Return: On success 1
+ * Return: Prints 1 when works
  * On error -1
  **/
 int _putchar(char c)
@@ -60,11 +60,11 @@ int _putchar(char c)
 }
 
 /**
- * print - Print a message to STDOUT
+ * print - Prints to STDOUT
  *
- * @msg: Message to print
+ * @msg: Message to be printed
  *
- * Return: On success number of bytes printed
+ * Return: Prints no of bytes when works
  * On errror -1, and set the error
  **/
 int print(char *msg)
