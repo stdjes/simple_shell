@@ -1,6 +1,7 @@
 #ifndef _SSH_H_
 #define _SSH_H_
 
+/* general buitin definitions */
 #define _TRUE            1
 #define _FALSE           0
 
@@ -26,6 +27,7 @@
 #define _CODE_EACCES           13
 #define _CODE_CMD_NOT_EXISTS   132
 #define _CODE_ILLEGAL_NUMBER   133
+/* end of general builin definitions */
 
 #include <stdlib.h>
 #include <string.h>
@@ -68,6 +70,7 @@ void get_full_env(void);
 void execute(char *commands, char **arguments, general_t *info, char *buff);
 int current_dir(char *cmd, char **arguments, char *buff, general_t *info);
 
+/* general input command data structure */
 typedef struct __attribute__((__packed__))
 {
 	int argc;                 /* Number of arguments received */
@@ -96,8 +99,13 @@ typedef struct __attribute__((__packed__))
 	char *command;            /* arguments[0] = cmd */
 	void (*func)(general_t *info, char **arguments);
 } builtin_t;
+/* end of data structure definition */
 
 
+/* error detection fucntions */
+char *message_selector(general_t info);
+void error(general_t *info);
+void error_extra(general_t *info, char *extra);
 
 
 #endif _SSH_H_  /* close guard */
