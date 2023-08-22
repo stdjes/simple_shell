@@ -1,3 +1,4 @@
+#include "structs.h"
 #include "ssh.h"
 #include <sys/cdefs.h>
 
