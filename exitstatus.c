@@ -30,8 +30,7 @@ void bin_exit(general_t *info, char **arguments)
 }
 
 /**
- * number_controller - Controls the argument 
- *
+ * number_controller - Controls the args of exit
  * @info: Info  about the shell
  * @number: The argument of the builtin
  *
