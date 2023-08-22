@@ -107,5 +107,12 @@ char *message_selector(general_t info);
 void error(general_t *info);
 void error_extra(general_t *info, char *extra);
 
+/* memory.c */
+void *_realloc(void *ptr, size_t old_size, size_t new_size);
+
+/* free.c */
+void free_memory_p(void *ptr);
+void free_memory_pp(void **ptr);
+
 
 #endif _SSH_H_  /* close guard */
