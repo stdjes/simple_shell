@@ -30,6 +30,7 @@
 /* end of general builin definitions */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -107,12 +108,12 @@ char *message_selector(general_t info);
 void error(general_t *info);
 void error_extra(general_t *info, char *extra);
 
-/* memory.c */
+/* memory allocation fucntions */
 void *_realloc(void *ptr, size_t old_size, size_t new_size);
-
-/* free.c */
 void free_memory_p(void *ptr);
 void free_memory_pp(void **ptr);
 
+/* main start  point of the simple shell program */
+void start(general_t *info);
 
 #endif _SSH_H_  /* close guard */
