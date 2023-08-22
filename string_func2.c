@@ -11,12 +11,12 @@
  **/
 int digits(int n)
 {
-    int i;
+	int i;
 
-    for (i = 0; n != 0; i++, n /= 10)
-        ;
+	for (i = 0; n != 0; i++, n /= 10)
+		;
 
-    return (i);
+	return (i);
 }
 
 /**
@@ -31,23 +31,23 @@ int digits(int n)
  **/
 char *to_string(int number)
 {
-    int n_digits, i;
-    char *_number;
+	int n_digits, i;
+	char *_number;
 
-    n_digits = digits(number);
-    _number = malloc(n_digits * sizeof(char) + 2);
-    if (number == 0)
-    {
-        _number[0] = '0';
-        _number[1] = '\0';
-        return (_number);
-    }
+	n_digits = digits(number);
+	_number = malloc(n_digits * sizeof(char) + 2);
+	if (number == 0)
+	{
+		_number[0] = '0';
+		_number[1] = '\0';
+		return (_number);
+	}
 
-    _number[n_digits] = '\0';
-    for (i = n_digits - 1; number != 0; number /= 10, i--)
-        _number[i] = (number % 10) + '0';
+	_number[n_digits] = '\0';
+	for (i = n_digits - 1; number != 0; number /= 10, i--)
+		_number[i] = (number % 10) + '0';
 
-    return (_number);
+	return (_number);
 }
 
 /**
@@ -57,11 +57,12 @@ char *to_string(int number)
  *
  * Return: 1 if the character is a digit, 0 otherwise.
  *
- * This function checks if the given character @n is a numerical digit ('0' - '9').
+ * This function checks if the given character @n is a numerical digit
+ * i.e ranging from ('0' - '9').
  **/
 int is_numerical(unsigned int n)
 {
-    return (n >= '0' && n <= '9');
+	return (n >= '0' && n <= '9');
 }
 
 /**
@@ -71,31 +72,32 @@ int is_numerical(unsigned int n)
  *
  * Return: Converted integer.
  *
- * This function converts a string @s to an integer. It processes both positive and negative numbers.
+ * This function converts a string @s to an integer.
+ * It processes both positive and negative numbers.
  **/
 int _atoi(char *s)
 {
-    unsigned int number, i;
-    int sign;
+	unsigned int number, i;
+	int sign;
 
-    sign = 1;
-    number = 0;
-    for (i = 0; s[i] != '\0'; i++)
-    {
-        if (is_numerical(s[i]))
-        {
-            number = (s[i] - 48) + number * 10;
+	sign = 1;
+	number = 0;
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if (is_numerical(s[i]))
+		{
+			number = (s[i] - 48) + number * 10;
 
-            if (s[i + 1] == ' ')
-                break;
-        }
-        else if (s[i] == '-')
-        {
-            sign *= -1;
-        }
-    }
+			if (s[i + 1] == ' ')
+				break;
+		}
+		else if (s[i] == '-')
+		{
+			sign *= -1;
+		}
+	}
 
-    return (number * sign);
+	return (number * sign);
 }
 
 /**
@@ -106,17 +108,18 @@ int _atoi(char *s)
  * Return: _TRUE if a non-digit was found, _FALSE otherwise.
  *
  * This function searches for non-digit characters in the given string @s.
- * If it finds any non-digit character, it returns _TRUE; otherwise, it returns _FALSE.
+ * If it finds any non-digit character,
+ * it returns _TRUE; otherwise, it returns _FALSE.
  **/
 int contains_letter(char *s)
 {
-    int i;
+	int i;
 
-    for (i = 0; s[i] != '\0'; i++)
-    {
-        if (is_numerical(s[i]) == _FALSE)
-            return (_TRUE);
-    }
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if (is_numerical(s[i]) == _FALSE)
+			return (_TRUE);
+	}
 
-    return (_FALSE);
+	return (_FALSE);
 }
