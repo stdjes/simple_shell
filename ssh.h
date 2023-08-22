@@ -25,23 +25,22 @@ void echo_printer(int index, char *text, char **arguments);
 
 extern char **environ;
 
-/* commands.c */
+/* command interpreter */
 void analyze(char **arguments, general_t *info, char *buff);
 
-/* permissions.c */
+/* permissions fucntions */
 int is_executable(char *filename);
 int is_file(char *command);
 
-/* environment.c */
+/* environment fucntions */
 char *_getenv(const char *name);
 char *which(char *filename, general_t *info);
 void is_current_path(char *path, general_t *info);
 void get_full_env(void);
 
-/* execute.c */
+/* execution fucntions */
 void execute(char *commands, char **arguments, general_t *info, char *buff);
-int current_directory(char *cmd, char **arguments, char *buff,
-		general_t *info);
+int current_dir(char *cmd, char **arguments, char *buff, general_t *info);
 
 
 #endif _SSH_H_  /* close guard */
