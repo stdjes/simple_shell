@@ -169,17 +169,3 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	*ptr = p;
 	return (s);
 }
-
-/**
- * sigintHandler - Handles the SIGINT signal (Ctrl-C)
- * @sig_num: The signal number
- *
- * Return: void
- */
-void sigintHandler(__attribute__((unused)) int sig_num)
-{
-	_puts("\n"); /* Print newline */
-	_puts("$ "); /* Print shell prompt */
-	_putchar(BUF_FLUSH); /* Flush the buffer */
-}
-

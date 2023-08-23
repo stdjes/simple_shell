@@ -50,7 +50,7 @@ void error(general_t *info);
 void error_extra(general_t *info, char *extra);
 
 /* memory allocation fucntions */
-void *_realloc(void *ptr, size_t old_size, size_t new_size);
+void _realloc(void *ptr, size_t old_size, size_t new_size);
 void free_memory_p(void *ptr);
 void free_memory_pp(void **ptr);
 

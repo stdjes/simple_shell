@@ -19,7 +19,7 @@
  * If reallocation fails, NULL is returned,
  * and the original block is unchanged.
  **/
-void *_realloc(void *ptr, size_t old_size, size_t new_size)
+void _realloc(void *ptr, size_t old_size, size_t new_size)
 {
 	char *s, *aux;
 	unsigned int a;

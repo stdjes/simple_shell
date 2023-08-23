@@ -1,3 +1,5 @@
+#include "structs.h"
+#include "ssh.h"
 #include "advanced.h"
 
 /**
@@ -20,47 +22,64 @@ int build_history_list(info_t *info, char *buf, int linecount)
 		info->history = node;
 	return (0);
 }
-
 /**
- * input_buf - buffers chained commands
- * @info: parameter struct
- * @buf: address of buffer
- * @len: address of len var
+ * add_node_end - adds a node to the end of the list
+ * @head: address of pointer to head node
+ * @str: str field of node
+ * @num: node index used by history
  *
- * Return: bytes read
+ * Return: size of list
  */
-ssize_t input_buf(info_t *info, char **buf, size_t *len)
+list_t *add_node_end(list_t **head, const char *str, int num)
 {
-	ssize_t r = 0;
-	size_t len_p = 0;
+	list_t *new_node, *node;
 
-	if (!*len) /* if nothing left in the buffer, fill it */
+	if (!head)
+		return (NULL);
+
+	node = *head;
+	new_node = malloc(sizeof(list_t));
+	if (!new_node)
+		return (NULL);
+	_memset((void *)new_node, 0, sizeof(list_t));
+	new_node->num = num;
+	if (str)
 	{
-		/*bfree((void **)info->cmd_buf);*/
-		free(*buf);
-		*buf = NULL;
-		signal(SIGINT, sigintHandler);
-#if USE_GETLINE
-		r = getline(buf, &len_p, stdin);
-#else
-		r = _getline(info, buf, &len_p);
-#endif
-		if (r > 0)
+		new_node->str = _strdup(str);
+		if (!new_node->str)
 		{
-			if ((*buf)[r - 1] == '\n')
-			{
-				(*buf)[r - 1] = '\0'; /* remove trailing newline */
-				r--;
-			}
-			info->linecount_flag = 1;
-			remove_comments(*buf);
-			build_history_list(info, *buf, info->histcount++);
-			/* if (_strchr(*buf, ';')) is this a command chain? */
-			{
-				*len = r;
-				info->cmd_buf = buf;
-			}
+			free(new_node);
+			return (NULL);
 		}
 	}
-	return (r);
+	if (node)
+	{
+		while (node->next)
+			node = node->next;
+		node->next = new_node;
+	}
+	else
+		*head = new_node;
+	return (new_node);
 }
+
+/**
+ * print_list_str - prints only the str element of a list_t linked list
+ * @h: pointer to first node
+ *
+ * Return: size of list
+ */
+size_t print_list_str(const list_t *h)
+{
+	size_t i = 0;
+
+	while (h)
+	{
+		_puts(h->str ? h->str : "(nil)");
+		_puts("\n");
+		h = h->next;
+		i++;
+	}
+	return (i);
+}
+
