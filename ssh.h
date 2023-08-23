@@ -1,4 +1,4 @@
-#ifndef SSH_H_
+#ifndef SSH_H
 #define SSH_H
 
 #include <stdlib.h>
@@ -42,6 +42,7 @@ void get_full_env(void);
 /* execution fucntions */
 void execute(char *commands, char **arguments, general_t *info, char *buff);
 int current_dir(char *cmd, char **arguments, char *buff, general_t *info);
+
 
 /* error detection fucntions */
 char *message_selector(general_t info);
