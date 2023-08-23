@@ -6,7 +6,7 @@
  *
  * Return: The product of a and b.
  */
-long long int product(long int a, long int b)
+long int product(int a, int b)
 {
 	/* Calculate and return the product */
 	return (a * b);
