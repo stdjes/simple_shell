@@ -1,84 +1,73 @@
 #include "main.h"
 
 /**
- * bring_line - assigns the line var for get_line
- * @lineptr: Buffer that store the input str
- * @buffer: str that is been called to line
- * @n: size of line
- * @j: size of buffer
+ * free_data - frees data structure
+ *
+ * @datash: data structure
+ * Return: no return
  */
-void bring_line(char **lineptr, size_t *n, char *buffer, size_t j)
+void free_data(data_shell *datash)
 {
+	unsigned int i;
 
-	if (*lineptr == NULL)
+	for (i = 0; datash->_environ[i]; i++)
 	{
-		if  (j > BUFSIZE)
-			*n = j;
+		free(datash->_environ[i]);
+	}
 
-		else
-			*n = BUFSIZE;
-		*lineptr = buffer;
-	}
-	else if (*n < j)
-	{
-		if (j > BUFSIZE)
-			*n = j;
-		else
-			*n = BUFSIZE;
-		*lineptr = buffer;
-	}
-	else
-	{
-		_strcpy(*lineptr, buffer);
-		free(buffer);
-	}
+	free(datash->_environ);
+	free(datash->pid);
 }
+
 /**
- * get_line - Read inpt from stream
- * @lineptr: buffer that stores the input
- * @n: size of lineptr
- * @stream: stream to read from
- * Return: The number of bytes
+ * set_data - Initialize data structure
+ *
+ * @datash: data structure
+ * @av: argument vector
+ * Return: no return
  */
-ssize_t get_line(char **lineptr, size_t *n, FILE *stream)
+void set_data(data_shell *datash, char **av)
 {
-	int i;
-	static ssize_t input;
-	ssize_t retval;
-	char *buffer;
-	char t = 'z';
+	unsigned int i;
 
-	if (input == 0)
-		fflush(stream);
-	else
-		return (-1);
-	input = 0;
+	datash->av = av;
+	datash->input = NULL;
+	datash->args = NULL;
+	datash->status = 0;
+	datash->counter = 1;
 
-	buffer = malloc(sizeof(char) * BUFSIZE);
-	if (buffer == 0)
-		return (-1);
-	while (t != '\n')
+	for (i = 0; environ[i]; i++)
+		;
+
+	datash->_environ = malloc(sizeof(char *) * (i + 1));
+
+	for (i = 0; environ[i]; i++)
 	{
-		i = read(STDIN_FILENO, &t, 1);
-		if (i == -1 || (i == 0 && input == 0))
-		{
-			free(buffer);
-			return (-1);
-		}
-		if (i == 0 && input != 0)
-		{
-			input++;
-			break;
-		}
-		if (input >= BUFSIZE)
-			buffer = _realloc(buffer, input, input + 1);
-		buffer[input] = t;
-		input++;
+		datash->_environ[i] = _strdup(environ[i]);
 	}
-	buffer[input] = '\0';
-	bring_line(lineptr, n, buffer, input);
-	retval = input;
-	if (i != 0)
-		input = 0;
-	return (retval);
+
+	datash->_environ[i] = NULL;
+	datash->pid = aux_itoa(getpid());
+}
+
+/**
+ * main - Entry point
+ *
+ * @ac: argument count
+ * @av: argument vector
+ *
+ * Return: 0 on success.
+ */
+int main(int ac, char **av)
+{
+	data_shell datash;
+	(void) ac;
+
+	signal(SIGINT, get_sigint);
+	set_data(&datash, av);
+	shell_loop(&datash);
+	free_data(&datash);
+	if (datash.status < 0)
+		return (255);
+	return (datash.status);
 }
