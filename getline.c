@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "advanced.h"
 
 /**
  * input_buf - Buffers chained commands from input
