@@ -176,3 +176,4 @@ int helper_shell(char **amgt, char __attribute__((__unused__)) **ourfront)
 		write(STDERR_FILENO, name, stringLen(name));
 
 	return (0);
+}
